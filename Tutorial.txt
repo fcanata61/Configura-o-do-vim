@@ -1,0 +1,199 @@
+===============================
+ MANUAL DO VIM PARA PROGRAMAÇÃO
+===============================
+
+Autor: Guia gerado pelo ChatGPT
+Versão: 1.0
+Propósito: Transformar o Vim em um editor moderno para programar
+           (explorador lateral, autocomplete, syntax highlight, git, splits)
+
+-----------------------------------
+1. INSTALAÇÃO DO VIM E VIM-PLUG
+-----------------------------------
+No Ubuntu/Debian:
+    sudo apt install vim git curl -y
+
+Instalar o plugin manager (vim-plug):
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+
+-----------------------------------
+2. CONFIGURAÇÃO ~/.vimrc
+-----------------------------------
+Cole o conteúdo abaixo em ~/.vimrc:
+
+call plug#begin('~/.vim/plugged')
+
+" Plugins principais
+Plug 'preservim/nerdtree'          " explorador de arquivos
+Plug 'ryanoasis/vim-devicons'      " ícones no NERDTree
+Plug 'vim-airline/vim-airline'     " barra de status bonita
+Plug 'tpope/vim-fugitive'          " git integrado
+Plug 'sheerun/vim-polyglot'        " sintaxe moderna
+Plug 'neoclide/coc.nvim', {'branch': 'release'}  " autocompletar
+Plug 'junegunn/fzf.vim'            " busca rápida de arquivos e texto
+
+call plug#end()
+
+" Configuração básica
+set number
+set relativenumber
+set cursorline
+syntax on
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set mouse=a
+set clipboard=unnamedplus
+set termguicolors
+
+" Atalhos
+nnoremap <C-n> :NERDTreeToggle<CR>   " abre explorador lateral
+nnoremap <C-p> :Files<CR>            " busca arquivos
+nnoremap <leader>g :Rg<CR>           " busca texto
+nnoremap <leader>v :vsplit<CR>       " split vertical
+nnoremap <leader>s :%s/<C-r><C-w>//g<Left><Left> " substituir palavra
+colorscheme desert
+
+
+-----------------------------------
+3. INSTALANDO PLUGINS
+-----------------------------------
+Abra o Vim e rode:
+    :PlugInstall
+
+Isso baixa e instala todos os plugins listados.
+
+
+-----------------------------------
+4. NAVEGAÇÃO DE ARQUIVOS
+-----------------------------------
+Explorador lateral (NERDTree):
+    Ctrl+n   -> abre/fecha
+    o        -> abre arquivo
+    s        -> abre em split vertical
+    i        -> abre em split horizontal
+
+Diagrama:
++-------------------+-----------------------+
+| NERDTree (Ctrl+n) | Código (arquivo.c)   |
+| pasta/arquivo1.c  |                      |
+| pasta/arquivo2.c  |                      |
++-------------------+-----------------------+
+
+
+-----------------------------------
+5. SPLITS E BUFFERS
+-----------------------------------
+Criar splits:
+    :split arquivo.c     -> horizontal
+    :vsplit arquivo.c    -> vertical
+    <leader>v            -> atalho split vertical
+
+Mover entre splits:
+    Ctrl+w w   -> alterna
+    Ctrl+w q   -> fecha split
+
+Buffers (arquivos abertos em memória):
+    :bn        -> próximo buffer
+    :bp        -> buffer anterior
+    :bd        -> fecha buffer
+
+
+-----------------------------------
+6. AUTOCOMPLETAR (coc.nvim)
+-----------------------------------
+Digite normalmente -> aparecerá menu de sugestões
+Teclas:
+    <Tab> ou <Enter>  -> aceita sugestão
+    <Ctrl+Space>      -> força autocomplete
+
+
+-----------------------------------
+7. BUSCA E SUBSTITUIÇÃO
+-----------------------------------
+Buscar:
+    /palavra          -> procura "palavra"
+    n                 -> próximo resultado
+    N                 -> anterior
+
+Substituir no arquivo inteiro:
+    :%s/antigo/novo/g
+
+Substituir palavra sob cursor:
+    <leader>s         -> atalho definido no ~/.vimrc
+
+
+-----------------------------------
+8. GIT (vim-fugitive)
+-----------------------------------
+Comandos úteis:
+    :Git status       -> mostra status
+    :Git add .        -> adiciona
+    :Git commit       -> commit
+    :Git push         -> push
+
+
+-----------------------------------
+9. BUSCA RÁPIDA (fzf)
+-----------------------------------
+Busca por arquivo:
+    Ctrl+p
+
+Busca por texto (usando ripgrep):
+    <leader>g
+
+
+-----------------------------------
+10. EXEMPLOS DE USO
+-----------------------------------
+-> Abrir explorador lateral:
+    Ctrl+n
+
+-> Abrir arquivo.c em split vertical:
+    Ctrl+n -> mover até arquivo.c -> s
+
+-> Substituir todas as ocorrências de "foo" por "bar":
+    :%s/foo/bar/g
+
+-> Buscar função "main" no código:
+    /main
+
+-> Autocompletar:
+    começar a digitar "pri" em C
+    autocomplete sugere printf -> Enter
+
+
+-----------------------------------
+11. DIAGRAMAS ASCII
+-----------------------------------
+Split horizontal:
++----------------------+
+|   código.c           |
++----------------------+
+|   header.h           |
++----------------------+
+
+Split vertical:
++-------------+---------------+
+| código.c    | header.h      |
+|             |               |
++-------------+---------------+
+
+
+-----------------------------------
+12. RESUMO DE ATALHOS
+-----------------------------------
+Ctrl+n        -> abrir explorador
+Ctrl+p        -> buscar arquivos
+<leader>g     -> buscar texto no projeto
+<leader>v     -> split vertical
+<leader>s     -> substituir palavra sob cursor
+Ctrl+w w      -> trocar split
+Ctrl+w q      -> fechar split
+
+-----------------------------------
+FIM DO MANUAL
+-----------------------------------

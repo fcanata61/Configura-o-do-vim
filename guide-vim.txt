@@ -1,0 +1,186 @@
+===========================================
+       GUIA COMPLETO DO VIM PARA DEV
+       Setup estilo VSCode, rápido e leve
+===========================================
+
+Autor: LFS Manager Helper
+Versão: 1.0
+-------------------------------------------
+
+📌 SUMÁRIO
+1. Instalação do Vim e Plugins
+2. Estrutura do ~/.vimrc
+3. Comandos Básicos do Vim
+4. Navegação e Splits
+5. Explorador de Arquivos (NERDTree)
+6. Busca Rápida (fzf + ripgrep)
+7. Autocomplete (coc.nvim)
+8. Git no Vim (fugitive)
+9. Barra de Status (airline)
+10. Substituições e Edição em Massa
+11. Troca de Tema
+12. Exemplos e Diagramas ASCII
+
+-------------------------------------------
+1. INSTALAÇÃO DO VIM E PLUGINS
+-------------------------------------------
+
+No Ubuntu/Debian:
+    sudo apt install vim git curl ripgrep -y
+
+Instalar plugin manager (vim-plug):
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+Salvar o arquivo ~/.vimrc (já fornecido neste guia).
+Dentro do Vim:
+    :PlugInstall
+
+-------------------------------------------
+2. ESTRUTURA DO ~/.vimrc
+-------------------------------------------
+
+- Tema: gruvbox (cores escuras modernas)
+- Navegação: NERDTree + FZF
+- Autocomplete: coc.nvim (VSCode-like)
+- Git: fugitive
+- Barra de status: airline
+- Configurações: números relativos, cursorline, clipboard integrado
+
+-------------------------------------------
+3. COMANDOS BÁSICOS DO VIM
+-------------------------------------------
+
+- :w           -> salva arquivo
+- :q           -> sai
+- :wq          -> salva e sai
+- :q!          -> sai sem salvar
+- u            -> desfaz
+- Ctrl+r       -> refaz
+- dd           -> deleta linha
+- yy           -> copia linha
+- p            -> cola
+- /palavra     -> busca no arquivo
+- n            -> próximo resultado
+- N            -> anterior
+
+-------------------------------------------
+4. NAVEGAÇÃO E SPLITS
+-------------------------------------------
+
+- :split       -> abre split horizontal
+- :vsplit      -> abre split vertical
+- <leader>v    -> split vertical rápido
+- <leader>h    -> split horizontal rápido
+- Ctrl+w w     -> troca entre splits
+- Ctrl+w q     -> fecha split
+- <leader>o    -> maximiza janela atual
+
+Exemplo visual (dois splits verticais):
+
+ ---------------------
+ | arquivo1 | arquivo2|
+ ---------------------
+
+-------------------------------------------
+5. EXPLORADOR DE ARQUIVOS (NERDTREE)
+-------------------------------------------
+
+- Ctrl+n       -> abre/fecha explorador lateral
+- o            -> abre arquivo
+- s            -> abre em split vertical
+- i            -> abre em split horizontal
+- q            -> fecha NERDTree
+
+-------------------------------------------
+6. BUSCA RÁPIDA (FZF + RIPGREP)
+-------------------------------------------
+
+- Ctrl+p       -> buscar arquivo por nome
+- <leader>g    -> buscar texto no projeto (usa ripgrep)
+
+Exemplo:
+    Digite <leader>g e depois "main"
+    -> retorna todas as ocorrências da palavra "main"
+
+-------------------------------------------
+7. AUTOCOMPLETE (coc.nvim)
+-------------------------------------------
+
+- Sugestões aparecem automaticamente ao digitar.
+- Tab          -> navega para frente
+- Shift+Tab    -> navega para trás
+- Enter        -> confirma sugestão
+
+Atalhos extras:
+- <leader>d    -> abre lista de erros e avisos
+
+-------------------------------------------
+8. GIT NO VIM (FUGITIVE)
+-------------------------------------------
+
+- :Git status  -> status
+- :Git commit  -> commit
+- :Git push    -> push
+- :Git log     -> log
+- <leader>gs   -> atalho para status
+- <leader>gc   -> atalho para commit
+
+-------------------------------------------
+9. BARRA DE STATUS (AIRLINE)
+-------------------------------------------
+
+A barra no rodapé mostra:
+- Nome do arquivo
+- Modo atual (NORMAL, INSERT, VISUAL)
+- Status Git (branch, + modificações)
+- Codificação (utf-8)
+- Posição no arquivo (linha, coluna)
+
+-------------------------------------------
+10. SUBSTITUIÇÕES E EDIÇÃO EM MASSA
+-------------------------------------------
+
+- :%s/foo/bar/g     -> substitui foo por bar em todo arquivo
+- <leader>s         -> substitui palavra sob cursor em todo arquivo
+- :%s/foo/bar/gc    -> substitui com confirmação
+
+-------------------------------------------
+11. TROCA DE TEMA
+-------------------------------------------
+
+O padrão é "gruvbox".
+Para mudar:
+    :colorscheme desert
+    :colorscheme elflord
+    :colorscheme gruvbox
+
+-------------------------------------------
+12. EXEMPLOS E DIAGRAMAS ASCII
+-------------------------------------------
+
+Abrindo código em splits:
+
+ -------------------------
+ |         main.c         |
+ -------------------------
+ |       utils.c          |
+ -------------------------
+
+Usando NERDTree:
+
+ -------------------------------
+ | FILES     |    main.c       |
+ | src/      |                 |
+ |  main.c   |                 |
+ |  utils.c  |                 |
+ -------------------------------
+
+Buscando texto com fzf:
+
+ :Rg TODO
+ -> mostra todas as linhas com "TODO"
+
+-------------------------------------------
+FIM DO GUIA
+-------------------------------------------
